@@ -1,0 +1,145 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>OKR</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+
+<style media="screen">
+	#curve_chart1,#curve_chart2,#curve_chart3,#curve_chart4{
+		overflow-y: scroll;
+		overflow-x: scroll;
+		width: 100%;
+		height: 550px;
+	}
+	</style>
+
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+
+		function drawChart() {
+			var data = google.visualization.arrayToDataTable({{linechart_util|safe}});
+
+			var options = {
+				title: 'Hourly Machine Performance for "HT.PLC.ENGINE.SPEED" ',
+				curveType: 'function',
+				legend: { position: 'top' },
+				titleTextStyle: {color:'red'},
+				vAxis: {
+				title: 'Reported Values',
+				titleTextStyle: {color:'red'}
+
+        },
+		hAxis: {
+				title: '(Hours from 1st March 2021 to 8th March 2021)',
+				titleTextStyle: {color:'red'}
+
+        }
+			};
+
+			var chart = new google.visualization.LineChart(document.getElementById('curve_chart1'));
+			chart.draw(data, options);
+		}
+	</script>
+
+	<script type="text/javascript">
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+
+		function drawChart() {
+			var data = google.visualization.arrayToDataTable({{linechart_util1|safe}});
+
+			var options = {
+				title: 'Hourly Machine Performance for "HT.PLC.VISCO.FAN.SPEED" ',
+				curveType: 'function',
+				legend: { position: 'top' },
+				titleTextStyle: {color:'red'},
+				vAxis: {
+				title: 'Reported Values',
+				titleTextStyle: {color:'red'}
+
+        },
+		hAxis: {
+				title: '(Hours from 1st March 2021 to 8th March 2021)',
+				titleTextStyle: {color:'red'}
+
+        }
+
+			};
+
+			var chart = new google.visualization.LineChart(document.getElementById('curve_chart2'));
+			chart.draw(data, options);
+		}
+	</script>
+
+	<script type="text/javascript">
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+
+		function drawChart() {
+			var data = google.visualization.arrayToDataTable({{linechart_util2|safe}});
+
+			var options = {
+				title: 'Hourly Machine Performance for  "HT.PLC.TOTAL.DRIVING.DISTANCE.DECIMAL" ',
+				curveType: 'function',
+				legend: { position: 'top' },
+				titleTextStyle: {color:'red'},
+				vAxis: {
+				title: 'Reported Values',
+				titleTextStyle: {color:'red'}
+
+        },
+		hAxis: {
+				title: '(Hours from 1st March 2021 to 8th March 2021)',
+				titleTextStyle: {color:'red'}
+
+        }
+			};
+
+			var chart = new google.visualization.LineChart(document.getElementById('curve_chart3'));
+			chart.draw(data, options);
+		}
+	</script>
+
+
+	</head>
+<body>
+  {%  include 'accounts/navbar.html' %}
+  <div class="container-fluid">
+    {% block content %}
+
+	   {% endblock %}
+   </div>
+	 		<p id="messages">{{error}}</p>
+			<h1 style = "text-align:center; color:red ">Movement</h1>
+	 <br><br>
+
+ <div class="row">
+ <ul><li style="font-style: italic; color:#006400">Only once it is observed that M1055 clocked 1730 rpm on 6th March 2021</li>
+ <li style="font-style: italic; color:#006400">Both machines generally operated between 1000 - 1500rpm</li></ul>
+		<div  id="curve_chart1" ></div>
+</div>
+
+<div class="row">
+<ul><li style="font-style: italic; color:#006400">Visco fan for both machines appear to be operated in the range of 600 – 800 rpm</li>
+ <li style="font-style: italic; color:#006400">M1055 crossed 1000rpm about 4 times during the entire period of analysis</li></ul>
+		<div  id="curve_chart2" ></div>
+</div>
+
+<div class="row">
+<ul><li style="font-style: italic; color:#006400">M311 showed steady linear growth during the period of observation</li>
+<li style="font-style: italic; color:#006400">M1055 showed steady growth, but for one exception where it covered about 150km in an hour on March 3rd</li></ul>
+		<div  id="curve_chart3" ></div>
+</div>
+
+ <br> <br>
+
+  {%  include 'accounts/footer.html' %}
+
+</body>
+</html>

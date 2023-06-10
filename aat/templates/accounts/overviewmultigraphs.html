@@ -1,0 +1,275 @@
+{% load static %}
+<html>
+<head>
+	<title>KPI</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+<style>
+    .container{
+        width: 100%;
+    }
+</style>
+    <script>
+      window.onload = function() {
+        let prices = {"Production":[{value:1,desc:"Distance"},{value:2,desc:"Moves"},{value:3,desc:"Cycle Time"}],
+             "Diagnostic":[{value:1,desc:"Weights moved"},{value:2,desc:"Temperature"},{value:3,desc:"Load Pattern"}],
+             "Efficiency":[{value:1,desc:"Utilization"},{value:2,desc:"Idle Time"},{value:3,desc:"Availability"},{value:4,desc:"Move Time"},{value:5,desc:"Lock Status"}],
+             "Consumption":[{value:1,desc:"Fuel"},{value:2,desc:"Refuel"}]}
+          document.getElementsByName('kpis')[0].addEventListener('change', function(e) {
+          document.getElementsByName('subkpis')[0].innerHTML = prices[this.value].reduce((acc, elem) => `${acc}<option value="${elem.value}">${elem.desc}</option>`, "");
+        });
+      }
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script language = "JavaScript">
+        	google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+				 function drawChart() {
+						// Define the chart to be drawn.
+						var data = google.visualization.arrayToDataTable({{ barchart_util0|safe }});
+
+						var options = {title: 'Weekly Machine Performance for {{value0}}',
+						vAxis: { title: '{{ units }}',titleTextStyle : {bold: 'true'} },
+                             hAxis: {title: "Days",titleTextStyle : {bold: 'true'}}};
+
+
+						// Instantiate and draw the chart.
+						var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart0'));
+						chart.draw(data, options);
+				 }
+				 google.charts.setOnLoadCallback(drawChart);
+	</script>
+	<script language = "JavaScript">
+				 function drawChart() {
+						// Define the chart to be drawn.
+						var data = google.visualization.arrayToDataTable({{barchart_util10|safe}});
+
+						var options = {title: 'Hourly Machine Performance for {{value0}}',
+						vAxis: { title: '{{ units }}',titleTextStyle : {bold: 'true'}},
+                             hAxis: {title: "Hours",titleTextStyle : {bold: 'true'}}};
+
+						// Instantiate and draw the chart.
+						var chart = new google.visualization.ColumnChart(document.getElementById('container10'));
+						chart.draw(data, options);
+				 }
+				 google.charts.setOnLoadCallback(drawChart);
+	</script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script language = "JavaScript">
+        	google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+				 function drawChart() {
+						// Define the chart to be drawn.
+						var data = google.visualization.arrayToDataTable({{ barchart_util1|safe }});
+
+						var options = {title: 'Weekly Machine Performance for {{value1}}',
+						vAxis: { title: '{{ units }}',titleTextStyle : {bold: 'true'} },
+                             hAxis: {title: "Days",titleTextStyle : {bold: 'true'}}};
+
+
+						// Instantiate and draw the chart.
+						var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart1'));
+						chart.draw(data, options);
+				 }
+				 google.charts.setOnLoadCallback(drawChart);
+	</script>
+	<script language = "JavaScript">
+				 function drawChart() {
+						// Define the chart to be drawn.
+						var data = google.visualization.arrayToDataTable({{barchart_util10|safe}});
+
+						var options = {title: 'Hourly Machine Performance for {{value1}}',
+						vAxis: { title: '{{ units }}',titleTextStyle : {bold: 'true'}},
+                             hAxis: {title: "Hours",titleTextStyle : {bold: 'true'}}};
+
+						// Instantiate and draw the chart.
+						var chart = new google.visualization.ColumnChart(document.getElementById('container11'));
+						chart.draw(data, options);
+				 }
+				 google.charts.setOnLoadCallback(drawChart);
+	</script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script language = "JavaScript">
+        	google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+				 function drawChart() {
+						// Define the chart to be drawn.
+						var data = google.visualization.arrayToDataTable({{ barchart_util2|safe }});
+
+						var options = {title: 'Weekly Machine Performance for {{value2}}',
+						vAxis: { title: '{{ units }}',titleTextStyle : {bold: 'true'} },
+                             hAxis: {title: "Days",titleTextStyle : {bold: 'true'}}};
+
+
+						// Instantiate and draw the chart.
+						var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart2'));
+						chart.draw(data, options);
+				 }
+				 google.charts.setOnLoadCallback(drawChart);
+	</script>
+	<script language = "JavaScript">
+				 function drawChart() {
+						// Define the chart to be drawn.
+						var data = google.visualization.arrayToDataTable({{barchart_util12|safe}});
+
+						var options = {title: 'Hourly Machine Performance for {{value2}}',
+						vAxis: { title: '{{ units }}',titleTextStyle : {bold: 'true'}},
+                             hAxis: {title: "Hours",titleTextStyle : {bold: 'true'}}};
+
+						// Instantiate and draw the chart.
+						var chart = new google.visualization.ColumnChart(document.getElementById('container12'));
+						chart.draw(data, options);
+				 }
+				 google.charts.setOnLoadCallback(drawChart);
+	</script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script language = "JavaScript">
+        	google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+				 function drawChart() {
+						// Define the chart to be drawn.
+						var data = google.visualization.arrayToDataTable({{ barchart_util3|safe }});
+
+						var options = {title: 'Weekly Machine Performance for {{value3}}',
+						vAxis: { title: '{{ units }}',titleTextStyle : {bold: 'true'} },
+                             hAxis: {title: "Days",titleTextStyle : {bold: 'true'}}};
+
+
+						// Instantiate and draw the chart.
+						var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart3'));
+						chart.draw(data, options);
+				 }
+				 google.charts.setOnLoadCallback(drawChart);
+	</script>
+	<script language = "JavaScript">
+				 function drawChart() {
+						// Define the chart to be drawn.
+						var data = google.visualization.arrayToDataTable({{barchart_util13|safe}});
+
+						var options = {title: 'Hourly Machine Performance for {{value3}}',
+						vAxis: { title: '{{ units }}',titleTextStyle : {bold: 'true'}},
+                             hAxis: {title: "Hours",titleTextStyle : {bold: 'true'}}};
+
+						// Instantiate and draw the chart.
+						var chart = new google.visualization.ColumnChart(document.getElementById('container13'));
+						chart.draw(data, options);
+				 }
+				 google.charts.setOnLoadCallback(drawChart);
+	</script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script language = "JavaScript">
+        	google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+				 function drawChart() {
+						// Define the chart to be drawn.
+						var data = google.visualization.arrayToDataTable({{ barchart_util4|safe }});
+
+						var options = {title: 'Weekly Machine Performance for {{value4}}',
+						vAxis: { title: '{{ units }}',titleTextStyle : {bold: 'true'} },
+                             hAxis: {title: "Days",titleTextStyle : {bold: 'true'}}};
+
+
+						// Instantiate and draw the chart.
+						var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart4'));
+						chart.draw(data, options);
+				 }
+				 google.charts.setOnLoadCallback(drawChart);
+	</script>
+	<script language = "JavaScript">
+				 function drawChart() {
+						// Define the chart to be drawn.
+						var data = google.visualization.arrayToDataTable({{barchart_util14|safe}});
+
+						var options = {title: 'Hourly Machine Performance for {{value4}}',
+						vAxis: { title: '{{ units }}',titleTextStyle : {bold: 'true'}},
+                             hAxis: {title: "Hours",titleTextStyle : {bold: 'true'}}};
+
+						// Instantiate and draw the chart.
+						var chart = new google.visualization.ColumnChart(document.getElementById('container14'));
+						chart.draw(data, options);
+				 }
+				 google.charts.setOnLoadCallback(drawChart);
+	</script>
+</head>
+
+<body>
+  {%  include 'accounts/navbar.html' %}
+  <div class="container-fluid">
+    {% block content %}
+
+	   {% endblock %}
+  </div>
+<div>
+         <h1>Metrics </h1><br><br>
+<form name="form1" id="form1" method="post" action="{% url 'overview' %}">
+    {% csrf_token %}
+    <label> OKR
+        <select name="kpis">
+            <option value="">Select Value</option>
+            <option value="Production">Production</option>
+            <option value="Diagnostic">Diagnostic</option>
+            <option value="Efficiency">Efficiency</option>
+            <option value="Consumption">Consumption</option>
+        </select>
+    </label>&nbsp;&nbsp;
+    <label>KPI
+        <select name="subkpis">
+            <option value="">Select Value</option>
+            <option value="Worktime">Worktime</option>
+            <option value="Distance">Distance</option>
+            <option value="Moves">Moves</option>
+            <option value="Delay">Delay</option>
+        </select>
+    </label><br>
+    <input type="submit" value="Select" style="margin-left: 140px">
+</form>
+  </div>
+  <div class="container" style="width:100%">
+		<div  id="curve_chart0" ></div>
+</div>
+<br> <br>
+<div class="container" style="width:100%;">
+		<div id = "container10" ></div>
+
+</div>
+ <br> <br>
+    <div class="container" style="width:100%">
+		<div  id="curve_chart1" ></div>
+</div>
+<br> <br>
+<div class="container" style="width:100%;">
+		<div id = "container11" ></div>
+
+</div>
+ <br> <br>
+    <div class="container" style="width:100%">
+		<div  id="curve_chart2" ></div>
+</div>
+<br> <br>
+<div class="container" style="width:100%;">
+		<div id = "container12" ></div>
+
+</div>
+ <br> <br>
+    <div class="container" style="width:100%">
+		<div  id="curve_chart3" ></div>
+</div>
+<br> <br>
+<div class="container" style="width:100%;">
+		<div id = "container13" ></div>
+
+</div>
+ <br> <br>
+    <div class="container" style="width:100%">
+		<div  id="curve_chart4" ></div>
+</div>
+<br> <br>
+<div class="container" style="width:100%;">
+		<div id = "container14" ></div>
+
+</div>
+ <br> <br><br>
+  {%  include 'accounts/footer.html' %}
+
+</body>
+</html>

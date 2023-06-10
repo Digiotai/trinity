@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>OKR</title>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+  <script type="text/javascript">
+    $(document).ready( function () {
+    $('#table_id').DataTable();
+    } );
+  </script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+</head>
+<body>
+	{%  include 'accounts/navbar.html' %}
+	<div class="container-fluid">
+	{% block content %}
+
+	{% endblock %}
+  </div>
+	<p> upload EXCEL file </p>
+	<form action="{% url "arima" %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file"
+                   title="Upload excel file"
+                   name="excel_file"
+                   style="border: 1px solid black; padding: 5px;"
+                   required="required">
+            <p>
+            <input type="submit"
+                   value="Upload"
+                   style="border: 1px solid green; padding:5px; border-radius: 2px; cursor: pointer;">
+        </form>
+
+						<p id="messages">{{error}}</p>
+
+        <hr>
+				{{column_data|safe}}
+				<br><br>
+  {%  include 'accounts/footer.html' %}
+
+
+</body>
+</html>

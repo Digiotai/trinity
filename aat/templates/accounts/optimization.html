@@ -1,0 +1,220 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>OKR</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+function getInputValue(){
+					// Selecting the input element and get its value
+					var inputVal = document.getElementById("myInput").value;
+					var col1 = document.getElementById("col1").value;
+					var col2 = document.getElementById("col2").value;
+					var col3 = document.getElementById("col3").value;
+					var col4 = document.getElementById("col4").value;
+					var col5 = document.getElementById("col5").value;
+					// Displaying the value
+					google.charts.load('current', {
+					callback: function () {
+						var data = new google.visualization.DataTable();
+						data.addColumn('number', 'No.of Cranes');
+						data.addColumn('number', col1);
+						data.addColumn('number', col2);
+						data.addColumn('number', col3);
+						data.addColumn('number', col4);
+						data.addColumn('number', col5);
+					  //alert(data.getColumnLabel(0));
+						data.addRows([
+							[8,inputVal*col1*8,inputVal*col2*8,inputVal*col3*8,inputVal*col4*8,inputVal*col5*8],
+							[7,inputVal*col1*7,inputVal*col2*7,inputVal*col3*7,inputVal*col4*7,inputVal*col5*7],
+							[6,inputVal*col1*6,inputVal*col2*6,inputVal*col3*6,inputVal*col4*6,inputVal*col5*6],
+							[5,inputVal*col1*5,inputVal*col2*5,inputVal*col3*5,inputVal*col4*5,inputVal*col5*5],
+							[4,inputVal*col1*4,inputVal*col2*4,inputVal*col3*4,inputVal*col4*4,inputVal*col5*4],
+							[3,inputVal*col1*3,inputVal*col2*3,inputVal*col3*3,inputVal*col4*3,inputVal*col5*3],
+							[2,inputVal*col1*2,inputVal*col2*2,inputVal*col3*2,inputVal*col4*2,inputVal*col5*2],
+							[1,inputVal*col1*1,inputVal*col2*1,inputVal*col3*1,inputVal*col4*1,inputVal*col5*1],
+						]);
+
+						var container = document.getElementById('table_div');
+						var table = new google.visualization.Table(container);
+
+						min_value = data.getColumnRange(1).min
+						//max_value = data.getColumnRange(5).max
+
+						//alert("min_value:"+min_value)
+						max_value = Math.max(data.getColumnRange(1).max,data.getColumnRange(2).max,data.getColumnRange(3).max,data.getColumnRange(4).max,data.getColumnRange(5).max)
+						calculate_value = (max_value-min_value)/5
+						range1 = 0
+						range2 = 0
+						// use formatter
+						var formatter = new google.visualization.ColorFormat();
+						range2 = min_value+calculate_value+1
+						formatter.addRange(range1, range2, 'black', '#FF0000');
+						range1 = range2+1
+						range2 = range2+calculate_value+1;
+						formatter.addRange(range1, range2, 'black', '#F08080');
+						range1 = range2+1
+						range2 = range2+calculate_value+1;
+						formatter.addRange(range1, range2, 'black', '#FF7D33');
+						range1 = range2+1
+						range2 = range2+calculate_value+1;
+						formatter.addRange(range1, range2, 'black', '#FFD700');
+						range1 = range2+1
+						range2 = range2+calculate_value+1;
+						formatter.addRange(range1, range2, 'black', '#00FF7F');
+						range1 = range2+1
+						range2 = range2+calculate_value*10+1;
+						formatter.addRange(range1, range2, 'black', '#ADFF2F');
+						//formatter.format(data, 0); // Apply formatter to first column
+						formatter.format(data, 1); // Apply formatter to second column
+						formatter.format(data, 2); // Apply formatter to third column
+						formatter.format(data, 3); // Apply formatter to fourth column
+						formatter.format(data, 4); // Apply formatter to fifth column
+						formatter.format(data, 5); // Apply formatter to sixth column
+						table.draw(data, {
+							allowHtml: true,
+							width: '100%'
+						});
+					},
+					packages: ['table']
+					});
+}
+</script>
+		<script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js"></script>
+      <script type = "text/javascript" src = "https://www.google.com/jsapi"></script>
+      <script type = "text/javascript">
+         google.charts.load('current', {packages: ['map']});
+      </script>
+			<script language = "JavaScript">
+         function drawChart() {
+            var data = google.visualization.arrayToDataTable({{googlechart|safe}});
+						var url = 'https://icons.iconarchive.com/icons/icons-land/vista-map-markers/48/';
+						var options = {
+				        zoomLevel: 6,
+				        showTooltip: true,
+				        showInfoWindow: true,
+				        useMapTypeControl: true,
+				        icons: {
+				          blue: {
+				            normal:   url + 'Map-Marker-Ball-Azure-icon.png',
+				            selected: url + 'Map-Marker-Ball-Right-Azure-icon.png'
+				          },
+				          green: {
+				            normal:   url + 'Map-Marker-Ball-Pink-icon.png',
+				            selected: url + 'Map-Marker-Ball-Right-Pink-icon.png'
+				          }
+				        }
+      		};
+
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.Map(document.getElementById('container'));
+            chart.draw(data, options);
+         }
+         google.charts.setOnLoadCallback(drawChart);
+      </script>
+
+		</script>
+				<script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js"></script>
+		      <script type = "text/javascript" src = "https://www.google.com/jsapi"></script>
+		      <script type = "text/javascript">
+		         google.charts.load('current', {packages: ['map']});
+		      </script>
+					<script language = "JavaScript">
+		         function drawChart() {
+		            var data = google.visualization.arrayToDataTable({{googlechart3|safe}});
+								var url = 'https://icons.iconarchive.com/icons/icons-land/vista-map-markers/48/';
+								var options = {
+						        zoomLevel: 6,
+						        showTooltip: true,
+						        showInfoWindow: true,
+						        useMapTypeControl: true,
+						        icons: {
+						          red: {
+						            normal:   url + 'Map-Marker-Ball-Azure-icon.png',
+						            selected: url + 'Map-Marker-Ball-Right-Azure-icon.png'
+						          },
+						          blue: {
+						            normal:   url + 'Map-Marker-Ball-Pink-icon.png',
+						            selected: url + 'Map-Marker-Ball-Right-Pink-icon.png'
+						          }
+						        }
+		      		};
+
+		            // Instantiate and draw the chart.
+		            var chart = new google.visualization.Map(document.getElementById('container3'));
+		            chart.draw(data, options);
+		         }
+		         google.charts.setOnLoadCallback(drawChart);
+		 </script>
+
+
+	 </script>
+	 		<script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js"></script>
+	       <script type = "text/javascript" src = "https://www.google.com/jsapi"></script>
+	       <script type = "text/javascript">
+	          google.charts.load('current', {packages: ['map']});
+	       </script>
+	 			<script language = "JavaScript">
+	          function drawChart() {
+	             var data = google.visualization.arrayToDataTable({{googlechart4|safe}});
+	 						var url = 'https://icons.iconarchive.com/icons/icons-land/vista-map-markers/48/';
+	 						var options = {
+	 				        zoomLevel: 6,
+	 				        showTooltip: true,
+	 				        showInfoWindow: true,
+	 				        useMapTypeControl: true,
+	 				        icons: {
+	 				          red: {
+	 				            normal:   url + 'Map-Marker-Ball-Azure-icon.png',
+	 				            selected: url + 'Map-Marker-Ball-Right-Azure-icon.png'
+	 				          },
+	 				          blue: {
+	 				            normal:   url + 'Map-Marker-Ball-Pink-icon.png',
+	 				            selected: url + 'Map-Marker-Ball-Right-Pink-icon.png'
+	 				          }
+	 				        }
+	       		};
+
+	             // Instantiate and draw the chart.
+	             var chart = new google.visualization.Map(document.getElementById('container4'));
+	             chart.draw(data, options);
+	          }
+	          google.charts.setOnLoadCallback(drawChart);
+	    </script>
+	</head>
+<body>
+  {%  include 'accounts/navbar.html' %}
+  <div class="container-fluid">
+    {% block content %}
+
+	   {% endblock %}
+   </div>
+	 		<p id="messages">{{error}}</p>
+			<h1 style = "text-align:center; color:red ">Optimization</h1>
+	 <br><br>
+
+	 <h4>Hours in a day :</h4>
+	 <input type="text" value= 24  id="myInput">
+	 <button type="button" onclick="getInputValue();">Calculate</button>
+
+ <br>
+ <h2 style = "text-align: center;">Moves per Crane per Hour</h2>
+ <div class="row">
+    <div class="col-sm-4" ><input type="hidden" value= 20  id="col6">Column values</div>
+		<div class="col-sm-1.5" ><input type="text" value= 20  id="col1"></div>
+    <div class="col-sm-1.5" ><input type="text" value= 25  id="col2"></div>
+		<div class="col-sm-1.5" ><input type="text" value= 30  id="col3"></div>
+    <div class="col-sm-1.5" ><input type="text" value= 35  id="col4"></div>
+		<div class="col-sm-1.5" ><input type="text" value= 40  id="col5"></div>
+  </div>
+	<br>
+<div style=" margin: auto; width: 100%;" id="table_div"></div>
+
+  {%  include 'accounts/footer.html' %}
+
+</body>
+</html>

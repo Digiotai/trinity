@@ -1,0 +1,254 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>OKR</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+
+	<style media="screen">
+	#barchart_m1 ,#barchart_m2,#curve_chart,#curve_chart1,#curve_chart2,#curve_chart3{
+		overflow-y: scroll;
+		overflow-x: scroll;
+		width: 100%;
+		height: 550px;
+		}
+	</style>
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var djangoData = {{ pie_m1|safe }};
+        var data = google.visualization.arrayToDataTable(djangoData);
+        var options = {
+         title: 'Machine M1',
+         is3D: true,
+				 pieHole: 0.4,
+       };
+
+       var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+       chart.draw(data, options);
+
+      }
+    </script>
+
+		<script type="text/javascript">
+	      google.charts.load("current", {packages:["corechart"]});
+	      google.charts.setOnLoadCallback(drawChart);
+
+	      function drawChart() {
+	        var djangoData = {{ pie_m2|safe }};
+	        var data = google.visualization.arrayToDataTable(djangoData);
+	        var options = {
+	         title: 'Machine M2',
+					 pieHole: 0.4,
+	       };
+
+	       var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+
+	       chart.draw(data, options);
+
+	      }
+	    </script>
+			<script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+				var djangoData = {{ bar1_m1|safe }};
+				var data = google.visualization.arrayToDataTable(djangoData);
+
+				var options = {
+	        legend: { position: 'top', maxLines: 7 },
+	        isStacked: true,
+	      };
+
+				var chart = new google.visualization.ColumnChart(document.getElementById("barchart_m1"));
+      	chart.draw(data, options);
+
+      }
+    </script>
+
+		<script type="text/javascript">
+		google.charts.load('current', {'packages':['bar']});
+		google.charts.setOnLoadCallback(drawChart);
+
+		function drawChart() {
+			var djangoData = {{ bar2_m2|safe }};
+			var data = google.visualization.arrayToDataTable(djangoData);
+
+			var options = {
+				legend: { position: 'top', maxLines: 7 },
+				isStacked: true,
+			};
+
+			var chart = new google.visualization.ColumnChart(document.getElementById("barchart_m2"));
+			chart.draw(data, options);
+
+		}
+	</script>
+
+	<script type="text/javascript">
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+
+		function drawChart() {
+			var data = google.visualization.arrayToDataTable({{linechart_m1m2|safe}});
+
+			var options = {
+				title: 'Date wise Machine Performance',
+				curveType: 'function',
+				legend: { position: 'top' },
+				titleTextStyle: {color:'red'},
+				vAxis: {
+				title: 'Reported Values',
+				titleTextStyle: {color:'red'}
+
+        },
+		hAxis: {
+				title: '(Hours from 1st March 2021 to 8th March 2021)',
+				titleTextStyle: {color:'red'}
+
+        }
+			};
+
+			var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+			chart.draw(data, options);
+		}
+	</script>
+
+	<script type="text/javascript">
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+
+		function drawChart() {
+			var data = google.visualization.arrayToDataTable({{linechart_fuel|safe}});
+
+			var options = {
+				title: 'Hourly Machine Performance for  HT.PLC.FUEL.RATE',
+				curveType: 'function',
+				legend: { position: 'top' },
+                titleTextStyle: {color:'red'},
+vAxis: {
+				title: 'Reported Values',
+				titleTextStyle: {color:'red'}
+
+        },
+hAxis: {
+				title: '(Hours from 1st March 2021 to 8th March 2021)',
+				titleTextStyle: {color:'red'}
+
+        }
+			};
+
+			var chart = new google.visualization.LineChart(document.getElementById('curve_chart1'));
+			chart.draw(data, options);
+		}
+	</script>
+
+	<script type="text/javascript">
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+
+		function drawChart() {
+			var data = google.visualization.arrayToDataTable({{linechart_fuel1|safe}});
+
+			var options = {
+				title: 'Hourly Machine Performance for  HT.PLC.TRIP.FUEL.CONSUMPTION',
+				curveType: 'function',
+				legend: { position: 'top' },
+				titleTextStyle: {color:'red'},
+				vAxis: {
+				title: 'Reported Values',
+				titleTextStyle: {color:'red'}
+
+        },
+		hAxis: {
+				title: '(Hours from 1st March 2021 to 8th March 2021)',
+				titleTextStyle: {color:'red'}
+
+        }
+			};
+
+			var chart = new google.visualization.LineChart(document.getElementById('curve_chart2'));
+			chart.draw(data, options);
+		}
+	</script>
+
+	<script type="text/javascript">
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+
+		function drawChart() {
+			var data = google.visualization.arrayToDataTable({{linechart_fuel2|safe}});
+
+			var options = {
+				title: 'Hourly Machine Performance for  "HT.PLC.HYDRAULIC.TANK.LEVEL" ',
+				curveType: 'function',
+				legend: { position: 'top' },
+				titleTextStyle: {color:'red'},
+				vAxis: {
+				title: 'Reported Values',
+				titleTextStyle: {color:'red'}
+
+        },
+		hAxis: {
+				title: '(Hours from 1st March 2021 to 8th March 2021)',
+				titleTextStyle: {color:'red'}
+
+        }
+			};
+
+			var chart = new google.visualization.LineChart(document.getElementById('curve_chart3'));
+			chart.draw(data, options);
+		}
+	</script>
+
+	</head>
+<body>
+  {%  include 'accounts/navbar.html' %}
+  <div class="container-fluid">
+    {% block content %}
+
+	   {% endblock %}
+   </div>
+	 		<p id="messages">{{error}}</p>
+			<h1 style = "text-align:center; color:red ">Fuel Consumption</h1>
+	 <br><br>
+
+
+
+
+<div class="row">
+<ul><li style="font-style: italic; color:#006400">M311 showed under 100 range fuel rate measurements during initial 2 and half days. There after both machines clocked high fuel rates above 100 range</li>
+<li style="font-style: italic; color:#006400">M1055 initial 4 days (1st March – 4th March) higher fuel rates are seen for M311 during the later 4 days (5th March – 8th March)
+</li></ul>
+		<div  id="curve_chart1" ></div>
+
+</div>
+
+<div class="row">
+<ul><li style="font-style: italic; color:#006400">M311 showed near zero consumption. Suspect erroneous reporting as the values went to maximum range from 2nd half of 5th March</li>
+<li style="font-style: italic; color:#006400">M1055 showed consistent fuel consumption at maximum range</li></ul>
+
+
+		<div  id="curve_chart2" ></div>
+</div>
+
+<div class="row">
+<ul><li style="font-style: italic; color:#006400">M1055 showed steady state tank level at around 80%</li>
+<li style="font-style: italic; color:#006400">M311 showed very high and fluctuating tank levels till 80 hours (3+ days), thereafter aligned with M1055 readings</li></ul>
+		<div  id="curve_chart3" ></div>
+</div>
+ <br> <br>
+
+  {%  include 'accounts/footer.html' %}
+
+</body>
+</html>

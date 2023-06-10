@@ -1,0 +1,110 @@
+{% load static %}
+<html>
+<head>
+	<title>KPI</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+<style>
+    .container{
+        width: 100%;
+    }
+    .img1{
+        width: 600px;
+        height: 500px;
+    }
+        .img2{
+        width: 1400px;
+            height: 500px;
+    }
+</style>
+
+
+</head>
+
+<body>
+  {%  include 'accounts/navbar.html' %}
+  <div class="container-fluid">
+    {% block content %}
+
+	   {% endblock %}
+  </div>
+<div>
+         <h1>Metrics </h1><br><br>
+<form name="form1" id="form1" method="post" action="{% url 'trains' %}">
+    {% csrf_token %}
+    <label>Train Number
+        <select name="train_no">
+            <option value="None">Select an option</option>
+            <option value=T48731>T48731</option>
+            <option value=T47771>T47771</option>
+            <option value=T48729>T48729</option>
+            <option value=T48717>T48717</option>
+            <option value=T48701>T48701</option>
+            <option value=T45783>T45783</option>
+            <option value=T48711>T48711</option>
+            <option value=T63171>T63171</option>
+            <option value=T48713>T48713</option>
+            <option value=T48715>T48715</option>
+            <option value=T49511>T49511</option>
+            <option value=T48721>T48721</option>
+            <option value=T48733>T48733</option>
+            <option value=T48743>T48743</option>
+            <option value=T48719>T48719</option>
+            <option value=T49719>T49719</option>
+            <option value=T49721>T49721</option>
+            <option value=T48745>T48745</option>
+            <option value=T49713>T49713</option>
+            <option value=T44787>T44787</option>
+        </select>
+    </label><br>
+    <input type="submit" value="Select" style="margin-left: 140px">
+</form>
+  </div>
+  <h5>{{ context }}</h5>
+<br> <br>
+<div >
+{% if wagons %}
+  <img src=" {{ wagons }} " class="img2">
+{% endif %}
+  </div><br>
+  <div >
+{% if RT %}
+  <img src=" {{ RT }} " class="img2">
+{% endif %}
+  </div><br>
+  <div >
+{% if tons %}
+  <img src=" {{ tons }} " class="img2">
+{% endif %}
+  </div><br>
+  <div >
+{% if tons_wagon %}
+  <img src=" {{ tons_wagon }} " class="img2">
+{% endif %}
+  </div><br>
+  <div >
+{% if tons_minute %}
+  <img src=" {{ tons_minute }} " class="img2">
+{% endif %}
+  </div><br>
+  <div >
+{% if LT %}
+  <img src=" {{ LT }} " class="img2">
+{% endif %}
+  </div><br>
+  <div >
+{% if ST %}
+  <img src=" {{ ST }} " class="img2">
+{% endif %}
+  </div>
+
+
+
+
+
+</div>
+ <br> <br><br>
+  {%  include 'accounts/footer.html' %}
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+{% load static %}
+<style>
+  .hello-msg{
+    font-size: 18px;
+    color: #fff;
+    margin-right: 20px;
+  }
+li{
+    font-size: x-large;
+}
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+ <!--<img src="{% static 'images/logo.png' %}" id="logo" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+   <!-- <img src="{% static 'images/logo1.png' %}" id="logo" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'arima'  %}">Monitor (RealTime)</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="{% url 'Insights'  %}">Insights</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'RF'  %}">Prediction</a>
+      </li>
+    </ul>
+  </div>
+  <span class="hello-msg">Hello, {{request.user}}</span>
+  <span ><a  class="hello-msg" href="{% url 'logout' %}">Logout</a></span>
+</nav>

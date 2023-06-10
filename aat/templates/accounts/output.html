@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>OKR</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+
+<style media="screen">
+	#curve_chart1,#curve_chart2,#curve_chart3,#curve_chart4{
+		overflow-y: scroll;
+		overflow-x: scroll;
+		width: 100%;
+		height: 550px;
+	}
+	</style>
+
+
+	</head>
+<body>
+  {%  include 'accounts/navbar.html' %}
+  <div class="container-fluid">
+    {% block content %}
+
+	   {% endblock %}
+
+
+  {%  include 'accounts/footer.html' %}
+
+</body>
+</html>

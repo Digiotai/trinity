@@ -1,0 +1,31 @@
+
+.input_table,.output_table {
+    font-size: 11pt;
+    border-collapse: collapse;
+    border: 1px solid silver;
+}
+.input_table tr:nth-child(even),.output_table tr:nth-child(even) {
+    background: #E0E0E0;
+}
+.input_table thead ,.output_table thead {
+    padding: 5px;
+	background-color: #000080;
+	font-weight: bold;
+	color:white;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	text-transform: capitalize;
+	text-align:center;
+}
+.input_table tr:hover,.output_table tr:hover {
+    background: silver;
+    cursor: pointer;
+}
+
+
+.output_table1 tr td:last-child, thead td:last-child{
+	background-color: green;
+	color:white;
+}
+
+
+
